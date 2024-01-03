@@ -1,10 +1,31 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/welcome' },
+  {
+    path: 'welcome',
+    loadChildren: () =>
+      import('./pages/welcome/welcome.module').then((m) => m.WelcomeModule),
+  },
+  {
+    path: 'properties-options',
+    loadChildren: () =>
+      import('./pages/properties-options/properties-options.module').then(
+        (m) => m.PropertiesOptionsModule
+      ),
+  },
+  {
+    path: 'expressions',
+    loadChildren: () =>
+      import('./pages/expressions/expressions.module').then(
+        (m) => m.ExpressionsModule
+      ),
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

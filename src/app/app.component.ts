@@ -3,8 +3,8 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.less'
+  styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'angular-ngx-formly';
+  isCollapsed = false;
 }

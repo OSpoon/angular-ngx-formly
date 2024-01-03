@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+  <formly-form
+    [form]="form"
+    [fields]="fields"
+    [model]="model"
+    [options]="options"
+  ></formly-form>
+  <button nz-button [nzType]="'primary'" type="submit">Submit</button>
+</form>
+
+<nz-divider nzOrientation="left" nzText="操作"></nz-divider>
+
+<nz-card>
+  <div nz-card-grid [ngStyle]="gridStyle">
+    <nz-switch
+      [(ngModel)]="options.formState.readOnly"
+      nzCheckedChildren="只读"
+      nzUnCheckedChildren="编辑"
+    ></nz-switch>
+  </div>
+  <div nz-card-grid [ngStyle]="gridStyle">
+    <nz-switch
+      [(ngModel)]="options.formState.hidden"
+      nzCheckedChildren="隐藏"
+      nzUnCheckedChildren="显示"
+    ></nz-switch>
+  </div>
+  <div nz-card-grid [ngStyle]="gridStyle">
+    <nz-switch
+      [(ngModel)]="options.formState.focus"
+      nzCheckedChildren="focus"
+      nzUnCheckedChildren="blur"
+    ></nz-switch>
+  </div>
+</nz-card>
