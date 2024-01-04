@@ -22,6 +22,11 @@ const routes: Routes = [
         (m) => m.ExpressionsModule
       ),
   },
+  {
+    path: 'verify',
+    loadChildren: () =>
+      import('./pages/verify/verify.module').then((m) => m.VerifyModule),
+  },
 ];
 
 @NgModule({
