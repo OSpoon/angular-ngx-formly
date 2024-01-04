@@ -19,9 +19,7 @@ import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,11 +31,9 @@ registerLocaleData(zh);
     BrowserAnimationsModule,
     FormlyModule.forRoot(),
     ReactiveFormsModule,
-    FormlyNgZorroAntdModule
+    FormlyNgZorroAntdModule,
   ],
-  providers: [
-    { provide: NZ_I18N, useValue: zh_CN }
-  ],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
