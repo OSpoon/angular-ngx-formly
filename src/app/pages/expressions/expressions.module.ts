@@ -11,6 +11,7 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 
 @NgModule({
   declarations: [ExpressionsComponent],
@@ -19,6 +20,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
     ExpressionsRoutingModule,
     FormlyModule.forChild(),
     ReactiveFormsModule,
+    FormlyNgZorroAntdModule,
     FormsModule,
     NzCardModule,
     NzSpaceModule,

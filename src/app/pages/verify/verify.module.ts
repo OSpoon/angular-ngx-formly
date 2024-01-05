@@ -10,6 +10,8 @@ import {
 } from '@angular/forms';
 import { FormlyFieldConfig, FormlyModule } from '@ngx-formly/core';
 import { Observable, map, of, timer } from 'rxjs';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
 
 export function IpValidator(control: AbstractControl): boolean {
   return /(\d{1,3}\.){3}\d{1,3}/.test(control.value);
@@ -70,6 +72,8 @@ export function TelephoneValidatorMessage(
       ],
     }),
     ReactiveFormsModule,
+    FormlyNgZorroAntdModule,
+    NzDividerModule,
   ],
 })
 export class VerifyModule {}

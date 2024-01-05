@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { map, timer } from 'rxjs';
@@ -6,7 +6,8 @@ import { map, timer } from 'rxjs';
 @Component({
   selector: 'app-verify',
   templateUrl: './verify.component.html',
-  styleUrl: './verify.component.less',
+  styleUrls: ['./verify.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class VerifyComponent {
   form = new FormGroup({});
@@ -53,6 +54,48 @@ export class VerifyComponent {
   ];
 
   onSubmit(model: any) {
+    console.log(model);
+  }
+
+  signInForm = new FormGroup({});
+  signInModel = {};
+  signInFields: FormlyFieldConfig[] = [
+    {
+      className: 'label-width input-width',
+      key: 'username',
+      type: 'input',
+      props: {
+        label: '用户名',
+        required: true,
+      },
+    },
+    {
+      className: 'label-width input-width',
+      key: ' password',
+      type: 'input',
+      props: {
+        label: '密码',
+      },
+    },
+    {
+      className: 'label-width input-width',
+      key: 'email',
+      type: 'input',
+      props: {
+        label: '邮箱',
+      },
+    },
+    {
+      className: 'label-width input-width',
+      key: 'phone',
+      type: 'input',
+      props: {
+        label: '电话',
+      },
+    },
+  ];
+
+  onSignIn(model: any) {
     console.log(model);
   }
 }
