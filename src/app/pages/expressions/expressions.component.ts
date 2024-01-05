@@ -25,18 +25,18 @@ export class ExpressionsComponent {
         placeholder: 'please input first name',
       },
       expressions: {
-        'props.disabled': 'formState.readOnly',
+        // 'props.disabled': 'formState.readOnly',
         hide: 'formState.hidden',
-        focus: 'formState.focus',
+        // focus: 'formState.focus',
       },
-      hooks: {
-        onInit: (field: FormlyFieldConfig) => {
-          return field.options?.fieldChanges?.pipe(
-            filter((e) => e.type === 'expressionChanges' && e.field === field),
-            tap((e) => console.log(e))
-          );
-        },
-      },
+      // hooks: {
+      //   onInit: (field: FormlyFieldConfig) => {
+      //     return field.options?.fieldChanges?.pipe(
+      //       filter((e) => e.type === 'expressionChanges' && e.field === field),
+      //       tap((e) => console.log(e))
+      //     );
+      //   },
+      // },
     },
     {
       key: 'lastName',
@@ -46,15 +46,16 @@ export class ExpressionsComponent {
         placeholder: 'please input last name',
       },
       expressions: {
-        'props.disabled': (field: FormlyFieldConfig) => {
-          return field.options?.formState.readOnly;
-        },
-        hide: (field: FormlyFieldConfig) => {
-          return field.options?.formState.hidden;
-        },
-        focus: (field: FormlyFieldConfig) => {
-          return field.options?.formState.focus;
-        },
+        // hide: '!model.firstName',
+        // 'props.disabled': (field: FormlyFieldConfig) => {
+        //   return field.options?.formState.readOnly;
+        // },
+        // hide: (field: FormlyFieldConfig) => {
+        //   return field.options?.formState.hidden;
+        // },
+        // focus: (field: FormlyFieldConfig) => {
+        //   return field.options?.formState.focus;
+        // },
       },
     },
   ];
