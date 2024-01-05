@@ -15,11 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormlyModule } from '@ngx-formly/core';
 import { FormlyNgZorroAntdModule } from '@ngx-formly/ng-zorro-antd';
+import { InputFieldComponent } from './formly-types/input-field/input-field.component';
 
 registerLocaleData(zh);
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, InputFieldComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,7 +30,9 @@ registerLocaleData(zh);
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    FormlyModule.forRoot(),
+    FormlyModule.forRoot({
+      types: [{ name: 'input', component: InputFieldComponent }],
+    }),
     ReactiveFormsModule,
     FormlyNgZorroAntdModule,
   ],

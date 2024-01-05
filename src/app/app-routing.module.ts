@@ -27,6 +27,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/verify/verify.module').then((m) => m.VerifyModule),
   },
+  {
+    path: 'types',
+    loadChildren: () =>
+      import('./pages/types/types.module').then((m) => m.TypesModule),
+  },
 ];
 
 @NgModule({
