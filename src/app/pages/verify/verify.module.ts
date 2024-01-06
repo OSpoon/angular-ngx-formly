@@ -35,6 +35,22 @@ export function TelephoneValidatorMessage(
   return `${field.formControl?.value} 不是有效的电话号码`;
 }
 
+export function fieldMatchValidator(control: AbstractControl) {
+  const { password, checkPassword } = control.value;
+  console.log('password', password);
+  console.log('checkPassword', checkPassword);
+  // 跳过两次密码均为空的情况
+  if (!checkPassword || !password) {
+    return null;
+  }
+  // 跳过两次密码一致的情况
+  if (checkPassword === password) {
+    return null;
+  }
+  // 其他情况都为不一致
+  return { fieldMatch: { message: '两次录入的密码不一致' } };
+}
+
 @NgModule({
   declarations: [VerifyComponent],
   imports: [
@@ -97,6 +113,10 @@ export function TelephoneValidatorMessage(
               ? null
               : { email: true };
           },
+        },
+        {
+          name: 'fieldMatch',
+          validation: fieldMatchValidator,
         },
       ],
       // validators: [

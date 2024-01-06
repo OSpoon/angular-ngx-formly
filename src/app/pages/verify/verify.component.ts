@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { map, timer } from 'rxjs';
+import { map, of, timer } from 'rxjs';
 
 @Component({
   selector: 'app-verify',
@@ -56,6 +56,8 @@ export class VerifyComponent {
   // onSubmit(model: any) {
   //   console.log(model);
   // }
+
+  existingPhones = ['15321776071', '15321776072', '15321776073'];
 
   signInForm = new FormGroup({});
   signInModel = {};
@@ -182,12 +184,25 @@ export class VerifyComponent {
         placeholder: '请输入手机号',
         required: true,
       },
+      modelOptions: {
+        updateOn: 'blur',
+      },
       validators: {
         phone: {
           expression: (c: AbstractControl) =>
             !c.value || /^(\+?86)?1[3-9]\d{9}|\d{3}-?\d{8}$/.test(c.value),
           message: (error: any, field: FormlyFieldConfig) =>
             `${field.props?.label}格式不正确`,
+        },
+      },
+      asyncValidators: {
+        uniquePhone: {
+          expression: (c: AbstractControl) =>
+            timer(1000).pipe(
+              map(() => this.existingPhones.indexOf(c.value) === -1)
+            ),
+          message: (error: any, field: FormlyFieldConfig) =>
+            `${field.props?.label}已被使用`,
         },
       },
     },
@@ -218,6 +233,40 @@ export class VerifyComponent {
         ],
         required: true,
       },
+    },
+    {
+      validators: {
+        validation: [
+          {
+            name: 'fieldMatch',
+            options: { errorPath: 'checkPassword' },
+          },
+        ],
+      },
+      fieldGroup: [
+        {
+          className: 'label-width',
+          key: 'checkPassword',
+          type: 'input',
+          props: {
+            type: 'password',
+            label: '确认密码',
+            placeholder: '请确认密码',
+            required: true,
+          },
+        },
+        {
+          className: 'label-width',
+          key: 'password',
+          type: 'input',
+          props: {
+            type: 'password',
+            label: '密码',
+            placeholder: '请输入密码',
+            required: true,
+          },
+        },
+      ],
     },
   ];
 
