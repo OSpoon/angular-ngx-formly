@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormGroup, ValidationErrors } from '@angular/forms';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { map, timer } from 'rxjs';
+import { filter, map, switchMap, tap, timer } from 'rxjs';
 
 @Component({
   selector: 'app-verify',
@@ -199,17 +199,6 @@ export class VerifyComponent {
       fieldGroup: [
         {
           className: 'label-width',
-          key: 'checkPassword',
-          type: 'input',
-          props: {
-            type: 'password',
-            label: '确认密码',
-            placeholder: '请确认密码',
-            required: true,
-          },
-        },
-        {
-          className: 'label-width',
           key: 'password',
           type: 'input',
           props: {
@@ -218,10 +207,48 @@ export class VerifyComponent {
             placeholder: '请输入密码',
             required: true,
           },
+          expressions: {
+            'validation.show': 'formState.showValidation',
+          },
+        },
+        {
+          className: 'label-width',
+          key: 'checkPassword',
+          type: 'input',
+          props: {
+            type: 'password',
+            label: '确认密码',
+            placeholder: '请确认密码',
+            required: true,
+          },
+          expressions: {
+            'validation.show': 'formState.showValidation',
+          },
+          hooks: {
+            onInit: (field: FormlyFieldConfig) => {
+              return field.options?.fieldChanges?.pipe(
+                filter(
+                  (e) => e.type === 'expressionChanges' && e.field === field
+                ),
+                tap((e) => console.warn(e))
+              );
+            },
+          },
         },
       ],
     },
   ];
+
+  signInOptions = {
+    formState: {
+      showValidation: false,
+    },
+  };
+
+  changeValidation() {
+    this.signInOptions.formState.showValidation =
+      !this.signInOptions.formState.showValidation;
+  }
 
   onSignIn(model: any) {
     console.log(model);

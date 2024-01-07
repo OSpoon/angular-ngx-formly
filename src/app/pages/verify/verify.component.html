@@ -5,6 +5,10 @@
     [form]="signInForm"
     [fields]="signInFields"
     [model]="signInModel"
+    [options]="signInOptions"
   ></formly-form>
   <button type="submit">注册</button>
 </form>
+<button type="submit" (click)="changeValidation()">
+  {{ signInOptions.formState.showValidation ? "隐藏" : "显示" }}
+</button>
